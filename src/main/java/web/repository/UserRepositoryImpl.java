@@ -2,6 +2,7 @@ package web.repository;
 
 import org.springframework.stereotype.Repository;
 import ru.itsinfo.model.User;
+import web.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

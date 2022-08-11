@@ -2,6 +2,7 @@ package web.repository;
 
 
 import ru.itsinfo.model.User;
+import web.model.User;
 
 import java.util.List;
 
