@@ -53,7 +53,13 @@ public class UsersController {
 			return "form";
 		}
 
-		userService.createOrUpdateUser(user);
+//		userService.createOrUpdateUser(user);
+		if (0 == user.getId()) {
+			userService.createUser(user);
+        } else {
+			userService.updateUser(user);
+        }
+
 		attributes.addFlashAttribute("flashMessage",
 				"User " + user.getFirstName() + " successfully created!");
 		return "redirect:/users";

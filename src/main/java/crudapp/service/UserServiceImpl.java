@@ -17,33 +17,38 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<User> getAllUsers() {
         return userRepository.getAllUsers();
     }
 
+//    @Transactional(readOnly = true)
+//    @Override
+//    public void createOrUpdateUser(User user) {
+//        if (0 == user.getId()) {
+//            createUser(user);
+//        } else {
+//            updateUser(user);
+//        }
+//    }
+    @Transactional
     @Override
-    public void createOrUpdateUser(User user) {
-        if (0 == user.getId()) {
-            createUser(user);
-        } else {
-            updateUser(user);
-        }
-    }
-
-    private void createUser(User user) {
+    public void createUser(User user) {
         userRepository.createUser(user);
     }
-
-    private void updateUser(User user) {
+    @Transactional
+    @Override
+    public void updateUser(User user) {
         userRepository.updateUser(user);
     }
-
+    @Transactional(readOnly = true)
     @Override
     public User readUser(long id) {
         return userRepository.readUser(id);
     }
 
+    @Transactional
     @Override
     public User deleteUser(long id) {
         User user = null;
