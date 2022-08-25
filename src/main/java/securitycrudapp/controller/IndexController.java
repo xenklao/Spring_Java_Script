@@ -1,4 +1,4 @@
-package securitycrusapp.controller;
+package securitycrudapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,8 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
-import securitycrusapp.config.exception.LoginException;
-import securitycrusapp.service.AppService;
+import securitycrudapp.config.exception.LoginException;
+import securitycrudapp.service.AppService;
 
 import javax.servlet.http.HttpSession;
 

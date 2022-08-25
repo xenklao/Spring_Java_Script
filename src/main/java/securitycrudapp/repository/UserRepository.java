@@ -1,9 +1,9 @@
-package securitycrusapp.repository;
+package securitycrudapp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
-import securitycrusapp.model.User;
+import securitycrudapp.model.User;
 
 import java.util.Optional;
 

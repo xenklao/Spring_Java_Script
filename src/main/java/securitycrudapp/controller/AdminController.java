@@ -1,4 +1,4 @@
-package securitycrusapp.controller;
+package securitycrudapp.controller;
 
 import org.hibernate.AssertionFailure;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +8,8 @@ import org.springframework.transaction.UnexpectedRollbackException;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import securitycrusapp.model.User;
-import securitycrusapp.service.AppService;
+import securitycrudapp.model.User;
+import securitycrudapp.service.AppService;
 
 import javax.validation.Valid;
 

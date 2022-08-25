@@ -1,9 +1,9 @@
-package securitycrusapp.config.handler;
+package securitycrudapp.config.handler;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
-import securitycrusapp.config.exception.LoginException;
+import securitycrudapp.config.exception.LoginException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +22,6 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
                                         HttpServletResponse response,
                                         AuthenticationException exception) throws IOException, ServletException {
 
-        // Запишем, чтобы не вводить заново ошибочные данные формы
         if (isAllowSessionCreation()) {
             LoginException loginException = new LoginException(exception.getMessage());
             request.getParameterMap().entrySet().forEach((entry) -> {

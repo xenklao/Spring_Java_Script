@@ -1,4 +1,4 @@
-package securitycrusapp.config.handler;
+package securitycrudapp.config.handler;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,7 +17,7 @@ public class CustomUrlLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler
                                 HttpServletResponse response,
                                 Authentication authentication) throws IOException, ServletException {
 
-        // Запишем, чтобы попрощаться
+
         if (authentication != null && !(authentication instanceof AnonymousAuthenticationToken)) {
             request.getSession().setAttribute("Authentication-Name", authentication.getName());
         }

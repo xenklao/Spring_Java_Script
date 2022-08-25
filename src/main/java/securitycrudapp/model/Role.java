@@ -1,4 +1,4 @@
-package securitycrusapp.model;
+package securitycrudapp.model;
 
 import org.springframework.security.core.GrantedAuthority;
 

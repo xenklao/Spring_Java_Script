@@ -1,4 +1,4 @@
-package securitycrusapp.model;
+package securitycrudapp.model;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

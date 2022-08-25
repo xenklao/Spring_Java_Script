@@ -1,11 +1,11 @@
-package securitycrusapp.service;
+package securitycrudapp.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import securitycrusapp.config.exception.LoginException;
-import securitycrusapp.model.Role;
-import securitycrusapp.model.User;
+import securitycrudapp.config.exception.LoginException;
+import securitycrudapp.model.Role;
+import securitycrudapp.model.User;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;

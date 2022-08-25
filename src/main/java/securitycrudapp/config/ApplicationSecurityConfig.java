@@ -1,4 +1,4 @@
-package securitycrusapp.config;
+package securitycrudapp.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -7,31 +7,31 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import securitycrusapp.config.handler.CustomAccessDeniedHandler;
-import securitycrusapp.config.handler.CustomAuthenticationFailureHandler;
-import securitycrusapp.config.handler.CustomAuthenticationSuccessHandler;
-import securitycrusapp.config.handler.CustomUrlLogoutSuccessHandler;
-import securitycrusapp.service.AppService;
+import securitycrudapp.config.handler.CustomAccessDeniedHandler;
+import securitycrudapp.config.handler.CustomAuthenticationFailureHandler;
+import securitycrudapp.config.handler.CustomAuthenticationSuccessHandler;
+import securitycrudapp.config.handler.CustomUrlLogoutSuccessHandler;
+import securitycrudapp.service.AppService;
 
 @Configuration
 @EnableWebSecurity
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    // сервис, с помощью которого тащим пользователя
+
     private final AppService appService;
 
     private final PasswordEncoder passwordEncoder;
 
-    // класс, в котором описана логика перенаправления пользователей по ролям
+
     private final CustomAuthenticationSuccessHandler authenticationSuccessHandler;
 
-    // класс, в котором описана логика при неудачной авторизации
+
     private final CustomAuthenticationFailureHandler authenticationFailureHandler;
 
-    // класс, в котором описана логика при удачной авторизации
+
     private final CustomUrlLogoutSuccessHandler urlLogoutSuccessHandler;
 
-    // класс, в котором описана логика при отказе в доступе
+
     private final CustomAccessDeniedHandler accessDeniedHandler;
 
     @Autowired

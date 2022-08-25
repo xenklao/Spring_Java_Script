@@ -1,4 +1,4 @@
-package securitycrusapp.config.exception;
+package securitycrudapp.config.exception;
 
 import java.io.Serializable;
 

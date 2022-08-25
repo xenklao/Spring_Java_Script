@@ -1,11 +1,11 @@
-package securitycrusapp.controller;
+package securitycrudapp.controller;
 
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import securitycrusapp.model.User;
+import securitycrudapp.model.User;
 
 @Controller
 @RequestMapping("/user")

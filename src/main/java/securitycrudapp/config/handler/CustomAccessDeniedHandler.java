@@ -1,4 +1,4 @@
-package securitycrusapp.config.handler;
+package securitycrudapp.config.handler;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -16,7 +16,6 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
                        HttpServletResponse response,
                        AccessDeniedException accessDeniedException) throws IOException, ServletException {
 
-        // Что то залогироввать..
         response.sendRedirect(request.getContextPath() + "/403");
     }
 }

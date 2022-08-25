@@ -1,4 +1,4 @@
-package securitycrusapp.service;
+package securitycrudapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -8,11 +8,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import securitycrusapp.config.exception.LoginException;
-import securitycrusapp.model.Role;
-import securitycrusapp.model.User;
-import securitycrusapp.repository.RoleRepository;
-import securitycrusapp.repository.UserRepository;
+import securitycrudapp.config.exception.LoginException;
+import securitycrudapp.model.Role;
+import securitycrudapp.model.User;
+import securitycrudapp.repository.RoleRepository;
+import securitycrudapp.repository.UserRepository;
 
 import javax.persistence.PersistenceException;
 import javax.servlet.http.HttpSession;
