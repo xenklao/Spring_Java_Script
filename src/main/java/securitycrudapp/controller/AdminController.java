@@ -9,7 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import securitycrudapp.model.User;
-import securitycrudapp.service.AppService;
+import securitycrudapp.service.RoleService;
+import securitycrudapp.service.UserService;
 
 import javax.validation.Valid;
 
@@ -17,11 +18,15 @@ import javax.validation.Valid;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private final AppService appService;
+    private final UserService appService;
+    private final RoleService roleService;
 
     @Autowired
-    public AdminController(AppService appService) {
+    public AdminController(UserService appService, RoleService roleService) {
+
         this.appService = appService;
+
+        this.roleService = roleService;
     }
 
     @GetMapping({"", "list"})
@@ -32,7 +37,7 @@ public class AdminController {
 
     @GetMapping(value = "/new")
     public String addUserForm(@ModelAttribute("user") User user, Model model) {
-        model.addAttribute("allRoles", appService.findAllRoles());
+        model.addAttribute("allRoles", roleService.findAllRoles());
         return "user-form";
     }
 
@@ -44,7 +49,7 @@ public class AdminController {
             e.printStackTrace();
             return "redirect:/admin";
         }
-        model.addAttribute("allRoles", appService.findAllRoles());
+        model.addAttribute("allRoles", roleService.findAllRoles());
         return "user-form";
     }
 

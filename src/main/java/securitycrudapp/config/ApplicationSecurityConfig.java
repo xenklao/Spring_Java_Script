@@ -11,14 +11,14 @@ import securitycrudapp.config.handler.CustomAccessDeniedHandler;
 import securitycrudapp.config.handler.CustomAuthenticationFailureHandler;
 import securitycrudapp.config.handler.CustomAuthenticationSuccessHandler;
 import securitycrudapp.config.handler.CustomUrlLogoutSuccessHandler;
-import securitycrudapp.service.AppService;
+import securitycrudapp.service.UserService;
 
 @Configuration
 @EnableWebSecurity
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    private final AppService appService;
+    private final UserService appService;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -35,7 +35,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomAccessDeniedHandler accessDeniedHandler;
 
     @Autowired
-    public ApplicationSecurityConfig(AppService appServiceTmp,
+    public ApplicationSecurityConfig(UserService appServiceTmp,
                                      PasswordEncoder passwordEncoder,
                                      CustomAuthenticationSuccessHandler authenticationSuccessHandler,
                                      CustomAuthenticationFailureHandler authenticationFailureHandler,
