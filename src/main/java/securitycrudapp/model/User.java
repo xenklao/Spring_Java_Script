@@ -8,11 +8,15 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
 @Table(name = "users", indexes = {@Index(columnList = "name, last_name ASC")})
-public class User extends AbstractEntity implements UserDetails {
+public class User implements UserDetails, Serializable {
+    @Id
+    @Column(name = "id", nullable = false)
+    private Long id;
 
     @Column(name = "name")
     @NotEmpty(message = "Name should not be empty")
@@ -32,9 +36,17 @@ public class User extends AbstractEntity implements UserDetails {
 
     private boolean enabled;
 
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(name = "users_roles")
     private Set<Role> roles = new HashSet<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public User() {
     }
