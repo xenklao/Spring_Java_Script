@@ -6,20 +6,24 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Spring_CRUD(TEST)boot" />
+        <module name="Spring_Bootstrap2_0(PRIVIOS)" />
         <module name="spring-mvc" />
+        <module name="Spring_CRUD(TEST)boot" />
         <module name="Spring_Security(TEXT)" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="spring-boot-bootstrap" target="11" />
       <module name="spring-boot-security-users" target="11" />
       <module name="SpringMvcHibernate" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Spring_Bootstrap2_0(PRIVIOS)" options="-parameters" />
       <module name="Spring_CRUD(TEST)boot" options="-parameters" />
       <module name="Spring_Security(TEXT)" options="-parameters" />
+      <module name="spring-boot-bootstrap" options="-parameters" />
       <module name="spring-boot-security-users" options="-parameters" />
     </option>
   </component>
