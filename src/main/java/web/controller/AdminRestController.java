@@ -18,13 +18,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api")
-public class RestApiController {
+@RequestMapping("/api/v1/admin")///api
+public class AdminRestController {
 
     private final UserService userService;
 
     @Autowired
-    public RestApiController(RoleService roleService, UserService userService) {
+    public AdminRestController(RoleService roleService, UserService userService) {
         this.userService = userService;
     }
 
