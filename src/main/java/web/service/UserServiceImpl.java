@@ -49,8 +49,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(User user) {
-        userDAO.save(passwordCoder(user));
+    public User save(User user) {
+      return  userDAO.save(passwordCoder(user));
     }
 
     @Override

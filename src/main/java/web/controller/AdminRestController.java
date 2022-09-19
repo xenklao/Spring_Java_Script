@@ -1,20 +1,23 @@
 package web.controller;
 
-import web.Exception.ExceptionInfo;
-import web.Exception.UserUsernameExistException;
-import web.model.User;
-import web.service.RoleService;
-import web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import web.Exception.ExceptionInfo;
+import web.Exception.ResourceNotFoundException;
+import web.Exception.UserUsernameExistException;
+import web.model.User;
+import web.service.RoleService;
+import web.service.UserService;
 
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -34,17 +37,23 @@ public class AdminRestController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<ExceptionInfo> createUser(@Valid @RequestBody User user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            String error = getErrorsFromBindingResult(bindingResult);
-            return new ResponseEntity<>(new ExceptionInfo(error), HttpStatus.BAD_REQUEST);
-        }
-        try {
-            userService.save(user);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }catch (UserUsernameExistException u) {
-            throw new UserUsernameExistException("User with username exist");
-        }
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        return ResponseEntity.of(
+                Optional
+                        .of(Optional.of(userService.save(user)))
+                        .orElseThrow(() -> new DataIntegrityViolationException("User already exist"))
+        );
+
+//        if (bindingResult.hasErrors()) {
+//            String error = getErrorsFromBindingResult(bindingResult);
+//            return new ResponseEntity<>(new ExceptionInfo(error), HttpStatus.BAD_REQUEST);
+//        }
+//        try {
+//            userService.save(user);
+//            return new ResponseEntity<>(HttpStatus.OK);
+//        }catch (UserUsernameExistException u) {
+//            throw new UserUsernameExistException("User with username exist");
+//        }
     }
 
     @DeleteMapping("/users/{id}")
@@ -55,7 +64,8 @@ public class AdminRestController {
 
     @GetMapping("users/{id}")
     public ResponseEntity<User> getUser (@PathVariable("id") long id) {
-        User user = userService.getById(id);
+        //User user = userService.getById(id);
+        User user = Optional.ofNullable(userService.getById(id)).orElseThrow(() -> new ResourceNotFoundException("User no found"));
         return new ResponseEntity<>(user,HttpStatus.OK);
     }
 
