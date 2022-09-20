@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import web.Exception.ExceptionInfo;
 import web.Exception.ResourceNotFoundException;
-import web.Exception.UserUsernameExistException;
 import web.model.User;
 import web.service.RoleService;
 import web.service.UserService;
@@ -41,6 +40,7 @@ public class AdminRestController {
         return ResponseEntity.of(
                 Optional
                         .of(Optional.of(userService.save(user)))
+
                         .orElseThrow(() -> new DataIntegrityViolationException("User already exist"))
         );
 
@@ -79,24 +79,45 @@ public class AdminRestController {
     public ResponseEntity<ExceptionInfo> pageEdit(@PathVariable("id") long id,
                          @Valid @RequestBody User user,
                          BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            String error = getErrorsFromBindingResult(bindingResult);
-            return new ResponseEntity<>(new ExceptionInfo(error), HttpStatus.BAD_REQUEST);
+
+        String oldPassword = userService.getById(id).getPassword();
+        if (oldPassword.equals(user.getPassword())) {
+            System.out.println("TRUE");
+            user.setPassword(oldPassword);
+            ResponseEntity.of(
+                    Optional
+                            .of(Optional.of(userService.update(user)))
+
+                            .orElseThrow(() -> new DataIntegrityViolationException("User already exist")));
+        } else {
+            System.out.println("FALSE");
+            ResponseEntity.of(
+                    Optional
+                            .of(Optional.of(userService.save(user)))
+
+                            .orElseThrow(() -> new DataIntegrityViolationException("User already exist")));
         }
-        try {
-            String oldPassword = userService.getById(id).getPassword();
-            if (oldPassword.equals(user.getPassword())) {
-                System.out.println("TRUE");
-                user.setPassword(oldPassword);
-                userService.update(user);
-            } else {
-                System.out.println("FALSE");
-                userService.save(user);
-            }
-            return new ResponseEntity<>(HttpStatus.OK);
-        }catch (UserUsernameExistException u) {
-            throw new UserUsernameExistException("User with username exist");
-        }
+        return new ResponseEntity<>(HttpStatus.OK);
+
+//        if (bindingResult.hasErrors()) {
+//            String error = getErrorsFromBindingResult(bindingResult);
+//            return new ResponseEntity<>(new ExceptionInfo(error), HttpStatus.BAD_REQUEST);
+//        }
+//        try {
+//            String oldPassword = userService.getById(id).getPassword();
+//            if (oldPassword.equals(user.getPassword())) {
+//                System.out.println("TRUE");
+//                user.setPassword(oldPassword);
+//                userService.update(user);
+//            } else {
+//                System.out.println("FALSE");
+//                userService.save(user);
+//            }
+//            return new ResponseEntity<>(HttpStatus.OK);
+//        }catch (UserUsernameExistException u) {
+//            throw new UserUsernameExistException("User with username exist");
+//        }
+
     }
 
     private String getErrorsFromBindingResult(BindingResult bindingResult) {
