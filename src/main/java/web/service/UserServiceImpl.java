@@ -64,20 +64,5 @@ public class UserServiceImpl implements UserService {
     public User findByUsername(String username) {
         return userDAO.findByUsername(username);
     }
-
-
-//    @Override
-//    @PostConstruct
-//    public void addDefaultUser() {
-//        Set<Role> roles1 = new HashSet<>();
-//        roles1.add(roleDAO.findById(1L).orElse(null));
-//        Set<Role> roles2 = new HashSet<>();
-//        roles2.add(roleDAO.findById(1L).orElse(null));
-//        roles2.add(roleDAO.findById(2L).orElse(null));
-//        User user1 = new User("Ivan","Ivanov",(byte) 25, "ivan@mail.com", "user","12345",roles1);
-//        User user2 = new User("Sergey","Sergeev",(byte) 30, "sergey@mail.com", "admin","admin",roles2);
-//        save(user1);
-//        save(user2);
-//        }
 }
 
